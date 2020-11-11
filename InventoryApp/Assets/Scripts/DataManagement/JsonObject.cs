@@ -9,7 +9,10 @@ namespace DataManagement
 		{
 			get;
 		}
-		public abstract string ToJson();
+		public virtual string ToJson()
+		{
+			return JsonUtility.ToJson(this);
+		}
 	}
 
 }

@@ -54,13 +54,6 @@ namespace Testing
                 return location;
             }
         }
-
-        public override string ToJson()
-        {
-            string json = JsonUtility.ToJson(this);
-            Debug.Log(json);
-            return json;
-        }
     }
 
 }
