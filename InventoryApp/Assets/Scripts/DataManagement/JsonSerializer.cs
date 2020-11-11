@@ -14,7 +14,7 @@ namespace DataManagement
             SaveData(jsonObject, jsonObject.PreferredLocation);
         }
 
-        public void SaveData(JsonObject jsonObject, string location)
+        private void SaveData(JsonObject jsonObject, string location)
         {
             try
             {
@@ -54,8 +54,7 @@ namespace DataManagement
                 string path = Application.persistentDataPath + location;
                 if (!path.Contains(".json"))
                     path += ".json";
-
-
+                
                 var file = File.Open(path, FileMode.Open, FileAccess.Read);
                 StreamReader stream = new StreamReader(file);
                 string json = stream.ReadToEnd();

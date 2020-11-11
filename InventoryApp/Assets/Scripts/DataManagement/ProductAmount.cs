@@ -5,15 +5,10 @@ using UnityEngine;
 namespace DataManagement
 {
 	[System.Serializable]
-	public class Product : JsonObject
+	public class ProductAmount
 	{
-		public override string PreferredLocation
-		{
-			get
-			{
-				return "Product";
-			}
-		}
+		public int ProductId;
+		public Amount amount;
+		public System.DateTime perishDate;
 	}
-
 }

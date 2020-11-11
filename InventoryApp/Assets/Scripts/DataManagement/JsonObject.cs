@@ -5,6 +5,7 @@ namespace DataManagement
 	[System.Serializable]
 	public abstract class JsonObject
 	{
+		public static string location;
 		public abstract string PreferredLocation
 		{
 			get;

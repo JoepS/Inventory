@@ -44,8 +44,7 @@ namespace Testing
     {
         public string test = "Hello World";
 
-        public static string location = "/Test/Testing/TestObject";
-
+        new public static string location = "/Test/Testing/TestObject";
 
         public override string PreferredLocation
         {
