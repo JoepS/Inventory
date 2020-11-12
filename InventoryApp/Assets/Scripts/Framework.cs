@@ -8,11 +8,16 @@ public class Framework : MonoBehaviour
 
     [SerializeField]
     private DataManagement.DataManager dataManager = null;
+    [SerializeField]
+    private SceneManagement.SceneManager sceneManager = null;
 
     private void Awake()
     {
         if (instance != null)
+        {
             DestroyImmediate(this.gameObject);
+            return;
+        }
         else
         {
             instance = this;
@@ -22,6 +27,7 @@ public class Framework : MonoBehaviour
         if(dataManager == null)
         {
             dataManager = new GameObject("DataManager").AddComponent<DataManagement.DataManager>();
+            Debug.Log(dataManager + " / " + this);
             dataManager.gameObject.transform.SetParent(this.transform);
         }
 

@@ -22,7 +22,6 @@ namespace DataManagement
             else
             {
                 instance = this;
-                DontDestroyOnLoad(this.gameObject);
             }
 
             serializer = new JsonSerializer();
@@ -63,7 +62,7 @@ namespace DataManagement
 
         private void OnApplicationQuit()
         {
-            SaveAll();
+            //SaveAll();
         }
 
         public ProductList GetProductList()
