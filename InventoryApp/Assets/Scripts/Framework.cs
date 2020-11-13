@@ -8,8 +8,6 @@ public class Framework : MonoBehaviour
 
     [SerializeField]
     private DataManagement.DataManager dataManager = null;
-    [SerializeField]
-    private SceneManagement.SceneManager sceneManager = null;
 
     private void Awake()
     {

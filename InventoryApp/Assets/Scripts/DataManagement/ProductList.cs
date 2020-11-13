@@ -9,7 +9,7 @@ namespace DataManagement
     {
         new public static string location = "/Products/List";
 
-        public List<Product> products;
+        public List<Product> products = new List<Product>();
 
         public override string PreferredLocation
         {

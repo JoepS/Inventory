@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DataManagement;
 
-public class ProductListView : MonoBehaviour
+public class ProductListView : TabView
 {
     [SerializeField]
     private Button addButton = null;

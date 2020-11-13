@@ -38,9 +38,12 @@ namespace DataManagement
 
         private void SaveAll()
         {
-            foreach(JsonObject jsonObject in loadedObjects)
+            if (loadedObjects != null)
             {
-                serializer.SaveData(jsonObject);
+                foreach (JsonObject jsonObject in loadedObjects)
+                {
+                    serializer.SaveData(jsonObject);
+                }
             }
         }
 
@@ -62,7 +65,7 @@ namespace DataManagement
 
         private void OnApplicationQuit()
         {
-            //SaveAll();
+            SaveAll();
         }
 
         public ProductList GetProductList()

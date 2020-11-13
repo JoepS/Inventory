@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
+
 namespace SceneManagement
 {
 
@@ -14,7 +16,10 @@ namespace SceneManagement
         private SceneView baseScene = null;
 
         [SerializeField]
-        private SceneView tempListSceneView = null;
+        private SceneView loadingScene = null;
+
+        [SerializeField]
+        private List<SceneView> scenes = null;
 
         private void Awake()
         {
@@ -24,14 +29,26 @@ namespace SceneManagement
                 instance = this;
 
             if(baseScene!= null)
-;               LoadAsync(baseScene, LoadSceneMode.Additive);
-            if (tempListSceneView != null)
-                LoadAsync(tempListSceneView, LoadSceneMode.Additive);
+               LoadAsync(baseScene, UnitySceneManager.GetActiveScene().name != loadingScene.name ? LoadSceneMode.Additive : LoadSceneMode.Single);
+
+            if (scenes.Count > 0)
+                LoadAsync(scenes[0]);
         }
 
-        private void LoadAsync(SceneView scene, LoadSceneMode loadSceneMode)
+        private void LoadAsync(SceneView scene, LoadSceneMode loadSceneMode = LoadSceneMode.Additive)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scene.name, loadSceneMode);
+            if (loadSceneMode == LoadSceneMode.Additive)
+            {
+                int scenesLoaded = UnitySceneManager.sceneCount;
+                for (int i = 0; i < scenesLoaded; i++)
+                {
+                    if (UnitySceneManager.GetSceneAt(i).name.Equals(scene.name))
+                    {
+                        return;
+                    }
+                }
+            }
+            UnitySceneManager.LoadSceneAsync(scene.name, loadSceneMode);
         }
     }
 
