@@ -18,7 +18,7 @@ public class TabView : MonoBehaviour
         canvasGroup = this.GetComponent<CanvasGroup>();
     }
 
-    public void Open()
+    public virtual void Open()
     {
         if (!fading)
         {
@@ -28,7 +28,7 @@ public class TabView : MonoBehaviour
         }
     }
 
-    public void Close()
+    public virtual void Close()
     {
         if (!fading)
         {

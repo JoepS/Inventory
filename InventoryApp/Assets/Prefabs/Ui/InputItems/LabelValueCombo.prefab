@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
   m_MinWidth: -1
-  m_MinHeight: 200
+  m_MinHeight: 150
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -249,6 +249,51 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2334685295912635905, guid: 6d0788c6ad159564cbdf8fcab9bd2eed,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 2334685295912635905, guid: 6d0788c6ad159564cbdf8fcab9bd2eed,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2334685295912635905, guid: 6d0788c6ad159564cbdf8fcab9bd2eed,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 2334685295912635905, guid: 6d0788c6ad159564cbdf8fcab9bd2eed,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302311499381007682, guid: 6d0788c6ad159564cbdf8fcab9bd2eed,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302311499381007682, guid: 6d0788c6ad159564cbdf8fcab9bd2eed,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 5444674097141066117, guid: 6d0788c6ad159564cbdf8fcab9bd2eed,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 5444674097141066117, guid: 6d0788c6ad159564cbdf8fcab9bd2eed,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 7262138410122145329, guid: 6d0788c6ad159564cbdf8fcab9bd2eed,
+        type: 3}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d0788c6ad159564cbdf8fcab9bd2eed, type: 3}
 --- !u!224 &3887930143806717018 stripped
@@ -298,6 +343,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_firstOverflowCharacterIndex
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 72664124269026380, guid: ff071e0bfb6a41d4f85d3236b86c5c21,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 72664124269026380, guid: ff071e0bfb6a41d4f85d3236b86c5c21,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 72664124269026380, guid: ff071e0bfb6a41d4f85d3236b86c5c21,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 72664124269026380, guid: ff071e0bfb6a41d4f85d3236b86c5c21,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
       objectReference: {fileID: 0}
     - target: {fileID: 534487924599167666, guid: ff071e0bfb6a41d4f85d3236b86c5c21,
         type: 3}

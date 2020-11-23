@@ -923,8 +923,8 @@ CanvasGroup:
   m_GameObject: {fileID: 751516948}
   m_Enabled: 1
   m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &814433674
 GameObject:
@@ -1021,9 +1021,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1096575602}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &1246410624
 GameObject:
@@ -1264,9 +1264,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1274432795}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1001 &1308176051
 PrefabInstance:
@@ -1839,7 +1839,8 @@ MonoBehaviour:
   productsContent: {fileID: 730174805}
   productViewPrefab: {fileID: 8695245780620751876, guid: 26fcbe413c7fd654ab898111df9e41d0,
     type: 3}
-  popupPointer: {fileID: 11400000, guid: f190a99858ae7af40845ef16ad8c9565, type: 2}
+  addProductIdentifier: {fileID: 11400000, guid: 2d7d10b8773ae7c4f95308867e900912,
+    type: 2}
 --- !u!225 &1383857036
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1848,7 +1849,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1383857033}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -2549,6 +2550,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5639830704354249515, guid: 9041dc9681e53e04896e20b48061777f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.00012207031
+      objectReference: {fileID: 0}
     - target: {fileID: 5639830703356109409, guid: 9041dc9681e53e04896e20b48061777f,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -3093,6 +3099,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639830703265052831, guid: 9041dc9681e53e04896e20b48061777f,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639830703265052831, guid: 9041dc9681e53e04896e20b48061777f,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9041dc9681e53e04896e20b48061777f, type: 3}

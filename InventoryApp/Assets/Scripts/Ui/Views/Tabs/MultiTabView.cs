@@ -29,7 +29,7 @@ public class MultiTabView : MonoBehaviour
     {
         tabs = this.GetComponentsInChildren<TabView>().ToList();
 
-        for (int i = 0; i < TabCount; i++)
+        for (int i = 1; i < TabCount; i++)
         {
             tabs[i].Close();
         }

@@ -56,11 +56,11 @@ public class PopupManager : MonoBehaviour
         currentPopup = null;
     }
 
-    public void OpenPopup(PopupViewPointer pointer)
+    public void OpenPopup(Identifier identifier)
     {
         foreach (PopupView popupView in popups)
         {
-            if (popupView.Pointer.Equals(pointer)){
+            if (popupView.Identifier.Equals(identifier)){
                 popupView.Open();
                 currentPopup = popupView;
                 return;

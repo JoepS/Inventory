@@ -83,6 +83,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3355617185738825199}
   - component: {fileID: 6400385291555170746}
+  - component: {fileID: 6477444289746675284}
   m_Layer: 5
   m_Name: Toggle
   m_TagString: Untagged
@@ -108,7 +109,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -400, y: -76}
+  m_SizeDelta: {x: -400, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6400385291555170746
 MonoBehaviour:
@@ -157,6 +158,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!114 &6477444289746675284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2956863409292841904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0dae32397399a345a418b712e0052dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
 --- !u!1 &2985339048914118632
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,7 +355,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1030, y: 200}
+  m_SizeDelta: {x: 1030, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2933271253053792822
 MonoBehaviour:
@@ -357,7 +371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
   m_MinWidth: -1
-  m_MinHeight: 200
+  m_MinHeight: 150
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -435,6 +449,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 72664124269026380, guid: ff071e0bfb6a41d4f85d3236b86c5c21,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 72664124269026380, guid: ff071e0bfb6a41d4f85d3236b86c5c21,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 72664124269026380, guid: ff071e0bfb6a41d4f85d3236b86c5c21,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 72664124269026380, guid: ff071e0bfb6a41d4f85d3236b86c5c21,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
       objectReference: {fileID: 0}
     - target: {fileID: 534487924599167666, guid: ff071e0bfb6a41d4f85d3236b86c5c21,
         type: 3}

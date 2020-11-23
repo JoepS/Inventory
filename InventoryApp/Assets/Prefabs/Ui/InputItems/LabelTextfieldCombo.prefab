@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
   m_MinWidth: -1
-  m_MinHeight: 200
+  m_MinHeight: 150
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -285,6 +285,46 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5308780379728096966, guid: 77d8dd71110e5d540abde9725f58a621,
+        type: 3}
+      propertyPath: m_LineType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5308780379728096966, guid: 77d8dd71110e5d540abde9725f58a621,
+        type: 3}
+      propertyPath: m_LineLimit
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1893552537692426111, guid: 77d8dd71110e5d540abde9725f58a621,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 1893552537692426111, guid: 77d8dd71110e5d540abde9725f58a621,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 1893552537692426111, guid: 77d8dd71110e5d540abde9725f58a621,
+        type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673289053298590648, guid: 77d8dd71110e5d540abde9725f58a621,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673289053298590648, guid: 77d8dd71110e5d540abde9725f58a621,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673289053298590648, guid: 77d8dd71110e5d540abde9725f58a621,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2668296142779413790, guid: 77d8dd71110e5d540abde9725f58a621,
         type: 3}
       propertyPath: m_LineType
@@ -359,6 +399,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontSizeBase
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 72664124269026380, guid: ff071e0bfb6a41d4f85d3236b86c5c21,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 72664124269026380, guid: ff071e0bfb6a41d4f85d3236b86c5c21,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 72664124269026380, guid: ff071e0bfb6a41d4f85d3236b86c5c21,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 72664124269026380, guid: ff071e0bfb6a41d4f85d3236b86c5c21,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
       objectReference: {fileID: 0}
     - target: {fileID: 534487924599167666, guid: ff071e0bfb6a41d4f85d3236b86c5c21,
         type: 3}

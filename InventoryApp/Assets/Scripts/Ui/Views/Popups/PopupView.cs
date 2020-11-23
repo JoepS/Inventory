@@ -16,25 +16,25 @@ public class PopupView : MonoBehaviour
     private float fadeSpeed = 10;
 
     [SerializeField]
-    private PopupViewPointer pointer = null;
+    private Identifier identifier = null;
 
     [SerializeField]
     private Button closeButton = null;
 
-    public PopupViewPointer Pointer
+    public Identifier Identifier
     {
         get
         {
-            return pointer;
+            return identifier;
         }
     }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         this.canvasGroup = this.GetComponent<CanvasGroup>();
-        if(pointer == null)
+        if(identifier == null)
         {
-            Debug.LogError("Popup pointer is null, no way to acces this popup " + this.gameObject.name);
+            Debug.LogError("Identifier is null, no way to acces this popup " + this.gameObject.name);
         }
 
         if (closeButton != null)

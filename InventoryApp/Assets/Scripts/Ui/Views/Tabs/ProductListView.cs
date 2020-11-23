@@ -16,23 +16,32 @@ public class ProductListView : TabView
     private GameObject productViewPrefab = null;
 
     [SerializeField]
-    private PopupViewPointer popupPointer = null;
+    private Identifier addProductIdentifier = null;
 
     List<Product> products = null;
 
-    List<ProductView> productViews = null;
+    List<ProductView> productViews = new List<ProductView>();
 
     private void Start()
     {
         addButton.onClick.AddListener(AddButtonClick);
         products = DataManager.instance.GetProductList().products;
-        productViews = new List<ProductView>();
-        CreateProductList();
+        UpdateProductList();
+    }
+
+    public override void Open()
+    {
+        if (DataManager.instance.Ready)
+        {
+            products = DataManager.instance.GetProductList().products;
+            UpdateProductList();
+        }
+        base.Open();
     }
 
     private void AddButtonClick()
     {
-        PopupManager.instance.OpenPopup(popupPointer);
+        PopupManager.instance.OpenPopup(addProductIdentifier);
     }
 
     private ProductView CreateProductView(Product product)
@@ -43,19 +52,12 @@ public class ProductListView : TabView
         ProductView productView = productViewGameObject.GetComponent<ProductView>();
         productView.SetProduct(product);
 
+        productViews.Add(productView);
+
         return productView;
     }
 
-    private void CreateProductList()
-    {
-        foreach(Product product in products)
-        {
-            ProductView productView = CreateProductView(product);
-            productViews.Add(productView);
-        }
-    }
-
-    private void UpdateProuctList()
+    private void UpdateProductList()
     {
         for (int i = 0; i < products.Count; i++)
         {

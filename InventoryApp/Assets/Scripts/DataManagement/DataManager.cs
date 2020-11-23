@@ -14,6 +14,11 @@ namespace DataManagement
         private List<JsonObject> loadedObjects;
 
         private int productListId = -1;
+        public bool Ready
+        {
+            get;
+            private set;
+        }
 
         private void Awake()
         {
@@ -33,6 +38,7 @@ namespace DataManagement
             loadedObjects.Add(productList);
             productListId = loadedObjects.IndexOf(productList);
             Debug.Log(productList);
+            Ready = true;
         }
 
 
@@ -47,21 +53,21 @@ namespace DataManagement
             }
         }
 
-        //private void OnApplicationFocus(bool focus)
-        //{
-        //    if (!focus)
-        //    {
-        //        SaveAll();
-        //    }
-        //}
+        private void OnApplicationFocus(bool focus)
+        {
+            if (!focus)
+            {
+                SaveAll();
+            }
+        }
 
-        //private void OnApplicationPause(bool pause)
-        //{
-        //    if (!pause)
-        //    {
-        //        SaveAll();
-        //    }
-        //}
+        private void OnApplicationPause(bool pause)
+        {
+            if (!pause)
+            {
+                SaveAll();
+            }
+        }
 
         private void OnApplicationQuit()
         {
@@ -73,6 +79,15 @@ namespace DataManagement
             if(productListId >= 0)
                 return (ProductList)loadedObjects[productListId];
             return null;
+        }
+
+        public void AddProduct(Product product)
+        {
+            if(productListId >= 0)
+            {
+                product.id = GetProductList().products.Count + 1;
+                GetProductList().products.Add(product);
+            }
         }
     }
 
