@@ -36,8 +36,8 @@ namespace DataManagement
 
                 
 
-                var file = File.Open(path, FileMode.OpenOrCreate, FileAccess.Write);
-                var writer = new StreamWriter(file);
+                //var file = File.Open(path, FileMode.OpenOrCreate, FileAccess.Write);
+                var writer = new StreamWriter(path, false);
                 writer.Write(json);
                 writer.Close();
             }

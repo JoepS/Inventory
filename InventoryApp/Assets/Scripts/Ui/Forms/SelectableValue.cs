@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class SelectableValue : MonoBehaviour
 {
@@ -18,4 +19,10 @@ public abstract class SelectableValue : MonoBehaviour
     public Identifier identifier;
 
     public abstract object GetValue();
+
+    public abstract void SetValue(object value);
+
+    public abstract void Clear();
+
+    public abstract UnityEvent OnValueChanged();
 }

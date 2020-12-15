@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace DataManagement
@@ -14,6 +15,7 @@ namespace DataManagement
         private List<JsonObject> loadedObjects;
 
         private int productListId = -1;
+        private int productAmountListId = -1;
         public bool Ready
         {
             get;
@@ -32,13 +34,30 @@ namespace DataManagement
             serializer = new JsonSerializer();
             loadedObjects = new List<JsonObject>();
 
+            CreateProductList();
+            CreateAmountList();
+           
+            Ready = true;
+        }
+
+        private void CreateProductList()
+        {
             ProductList productList = serializer.LoadData<ProductList>(ProductList.location);
             if (productList == null)
                 productList = new ProductList();
             loadedObjects.Add(productList);
             productListId = loadedObjects.IndexOf(productList);
             Debug.Log(productList);
-            Ready = true;
+        }
+
+        private void CreateAmountList()
+        {
+            ProductAmountList productAmountList = serializer.LoadData<ProductAmountList>(ProductAmountList.location);
+            if (productAmountList == null)
+                productAmountList = new ProductAmountList();
+            loadedObjects.Add(productAmountList);
+            productAmountListId = loadedObjects.IndexOf(productAmountList);
+            Debug.Log(productAmountList);
         }
 
 
@@ -74,20 +93,44 @@ namespace DataManagement
             SaveAll();
         }
 
-        public ProductList GetProductList()
+        
+        public JsonObjectList<T> GetList<T>() where T : JsonObject
         {
-            if(productListId >= 0)
-                return (ProductList)loadedObjects[productListId];
-            return null;
+            JsonObjectList<T> jsonObjectList = (JsonObjectList<T>)loadedObjects.Where(x => typeof(JsonObjectList<T>).IsAssignableFrom(x.GetType())).First();
+            return jsonObjectList;
         }
 
-        public void AddProduct(Product product)
+
+        public T AddItem<T>(T item) where T : JsonObject
         {
-            if(productListId >= 0)
+            JsonObjectList<T> list = GetList<T>();
+            if (list != null)
             {
-                product.id = GetProductList().products.Count + 1;
-                GetProductList().products.Add(product);
+                item.id = list.GetUniqueID();
+                list.list.Add(item);
             }
+            return item;
+
+        }
+
+        public void EditItem<T>(T item) where T : JsonObject
+        {
+            JsonObjectList<T> list = GetList<T>();
+            if(list != null)
+            {
+                list.list[list.list.FindIndex(x => x.id == item.id)] = item;
+            }
+        }
+
+        public bool RemoveItem<T>(T item) where T : JsonObject
+        {
+            JsonObjectList<T> list = GetList<T>();
+            if(list!= null)
+            {
+                list.list.Remove(item);
+                return true;
+            }
+            return false;
         }
     }
 

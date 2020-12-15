@@ -5,8 +5,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
+using System;
 
-public class ProductView : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler
+public class ProductView : MonoBehaviour, IPointerClickHandler, IPointerDownHandler
 {
     private const float MIN_HOLD_TIME = 1;
 
@@ -29,12 +31,23 @@ public class ProductView : MonoBehaviour, IPointerClickHandler, IPointerDownHand
     private GameObject removeView = null;
 
     [SerializeField]
-    private VerticalLayoutGroup layoutGroup = null;
+    private RectTransform dataView = null;
+
+    [SerializeField]
+    private Toggle removeToggle = null;
+
+    public bool GetToggleState
+    {
+        get
+        {
+            return removeToggle.isOn;
+        }
+    }
 
 
     private bool colapsed = true;
 
-    private bool removeOpen = false;
+    public bool removeOpen = false;
 
     private LayoutElement layoutElement;
 
@@ -42,16 +55,42 @@ public class ProductView : MonoBehaviour, IPointerClickHandler, IPointerDownHand
 
     private Product product = null;
 
-    float pointerDownStartTime = 0;
+    private float pointerDownStartTime = 0;
+
+    private OptionsMenu optionsMenu;
+
+    public BoolEvent removeToggleSwitch = new BoolEvent();
+
+    public ProductEvent OnClick = new ProductEvent();
+
 
     private void Awake()
     {
         layoutElement = this.GetComponent<LayoutElement>();
         colapsedButton.onClick.AddListener(OnColapsedButtonClick);
+        removeToggle.onValueChanged.AddListener(delegate { removeToggleSwitch.Invoke(removeToggle.isOn); });
     }
 
-    private void OnColapsedButtonClick()
+    public void SetOptionsMenu(OptionsMenu optionsMenu)
     {
+        this.optionsMenu = optionsMenu;
+    }
+
+	public void Hide()
+	{
+        this.gameObject.SetActive(false);
+	}
+
+    public void Show()
+    {
+        this.gameObject.SetActive(true);
+    }
+
+	private void OnColapsedButtonClick()
+    {
+        if (removeOpen)
+            return;
+
         if (lerping)
             return;
 
@@ -89,9 +128,13 @@ public class ProductView : MonoBehaviour, IPointerClickHandler, IPointerDownHand
 	{
         this.product = product;
         UpdateView();
-	}
+    }
+    public Product GetProduct()
+    {
+        return this.product;
+    }
 
-	internal void UpdateProduct(Product product)
+    internal void UpdateProduct(Product product)
 	{
         SetProduct(product);
 	}
@@ -106,28 +149,47 @@ public class ProductView : MonoBehaviour, IPointerClickHandler, IPointerDownHand
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(Time.time - pointerDownStartTime < MIN_HOLD_TIME && !removeOpen)
-            OnColapsedButtonClick();
+        OnClick.Invoke(this.product);
+        float holdTime = Time.time - pointerDownStartTime;
 
+        pointerDownStartTime = 0;
+
+        if (holdTime > MIN_HOLD_TIME)
+        {
+            removeToggle.SetIsOnWithoutNotify(true);
+            optionsMenu.RemoveButtonClick();
+        }
+        else if (optionsMenu.GetCurrentState().Equals(OptionsMenu.OptionsState.Remove))
+        {
+            removeToggle.isOn = !removeToggle.isOn;
+        }
+        else if (optionsMenu.GetCurrentState().Equals(OptionsMenu.OptionsState.Edit))
+        {
+
+        }
+        else
+        {
+            OnColapsedButtonClick();
+        }
+    }
+
+    public void SetRemoveState(bool value)
+    {
+        if (value != removeOpen)
+        {
+            if (!colapsed)
+                OnColapsedButtonClick();
+            StartCoroutine(OnClickHold());
+            if (!value)
+            {
+                removeToggle.SetIsOnWithoutNotify(false);
+            }
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         pointerDownStartTime = Time.time;
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        float holdTime = Time.time - pointerDownStartTime;
-
-        if(holdTime > MIN_HOLD_TIME)
-        {
-            Debug.Log("HoldTime: " + holdTime);
-            if (!colapsed)
-                OnColapsedButtonClick();
-            StartCoroutine(OnClickHold());
-
-        }
     }
 
     private IEnumerator OnClickHold()
@@ -138,11 +200,11 @@ public class ProductView : MonoBehaviour, IPointerClickHandler, IPointerDownHand
         lerping = true;
 
         Vector2 sizeDelta = removeView.GetComponent<RectTransform>().sizeDelta;
-        RectTransform layoutGroupTransform = layoutGroup.GetComponent<RectTransform>();
+        Vector2 dataViewOffset = dataView.offsetMin;
         RectTransform removeViewTransform = removeView.GetComponent<RectTransform>();
 
         float startWidth = sizeDelta.x;
-        int startLeftPadding = layoutGroup.padding.left;
+        float startLeftPadding = dataViewOffset.x; //padding.left;
 
         float newWidth = 200;
         int newLeftPadding = 225;
@@ -161,17 +223,26 @@ public class ProductView : MonoBehaviour, IPointerClickHandler, IPointerDownHand
 
             sizeDelta.x = width;
             removeViewTransform.sizeDelta = sizeDelta;
-            layoutGroup.padding.left = leftPadding;
-            LayoutRebuilder.ForceRebuildLayoutImmediate(layoutGroupTransform);
+
+            dataViewOffset.x = leftPadding;
+            dataView.offsetMin = dataViewOffset;
+            LayoutRebuilder.ForceRebuildLayoutImmediate(dataView);
             time += Time.deltaTime * 10;
             yield return null;
         }
         
         removeView.GetComponent<RectTransform>().sizeDelta = new Vector2(newWidth, sizeDelta.y);
-        layoutGroup.padding.left = newLeftPadding;
+        dataView.offsetMin = new Vector2(newLeftPadding, dataView.offsetMin.y);
 
         removeOpen = !removeOpen;
 
         lerping = false;
     }
 }
+
+public class BoolEvent : UnityEvent<bool>
+{
+
+}
+
+public class ProductEvent : UnityEvent<Product> { }

@@ -56,6 +56,7 @@ public class OpenMobileKeyboardScroll : MonoBehaviour
     public void SnapTo()
     {
         Canvas.ForceUpdateCanvases();
+
         Vector2 position = (Vector2)scrollRect.transform.InverseTransformPoint(scrollRect.content.position)
             - (Vector2)scrollRect.transform.InverseTransformPoint(EventSystem.current.currentSelectedGameObject.transform.position);
         position.x = 0;

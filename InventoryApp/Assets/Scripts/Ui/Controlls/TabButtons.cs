@@ -37,7 +37,7 @@ public class TabButtons : MonoBehaviour
         for (int i = 0; i < tabButtons.Count; i++)
         {
             int index = i;
-            tabButtons[i].button.onClick.AddListener(delegate { TabButtonClick(index); });
+            tabButtons[i].button.onClick.AddListener(delegate { TabButtonClick(index);  });
         }
     }
 

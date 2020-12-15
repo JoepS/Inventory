@@ -9,7 +9,7 @@ public class PopupManager : MonoBehaviour
 
     private List<PopupView> popups;
 
-    private PopupView currentPopup = null;
+    public PopupView currentPopup = null;
 
     public bool PopupOpen
     {
@@ -32,12 +32,6 @@ public class PopupManager : MonoBehaviour
         Initialise();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void Initialise()
     {
         popups = this.GetComponentsInChildren<PopupView>().ToList();
@@ -56,12 +50,12 @@ public class PopupManager : MonoBehaviour
         currentPopup = null;
     }
 
-    public void OpenPopup(Identifier identifier)
+    public void OpenPopup(Identifier identifier, params object[] optionals)
     {
         foreach (PopupView popupView in popups)
         {
             if (popupView.Identifier.Equals(identifier)){
-                popupView.Open();
+                popupView.Open(optionals);
                 currentPopup = popupView;
                 return;
             }

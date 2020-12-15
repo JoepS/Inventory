@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using DataManagement;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class AddProductPopup : PopupView
@@ -9,8 +11,9 @@ public class AddProductPopup : PopupView
     [SerializeField]
     private Button submitButton = null;
 
+
     [SerializeField]
-    private GameObject formContent = null;
+    private GameObject perishDatePanel = null;
 
     [SerializeField]
     private Identifier productName = null;
@@ -27,7 +30,6 @@ public class AddProductPopup : PopupView
     [SerializeField]
     private Identifier productPerishDate = null;
 
-    private List<SelectableValue> selectables;
 
 
 
@@ -35,15 +37,29 @@ public class AddProductPopup : PopupView
     {
         base.Awake();
 
-        selectables = formContent.GetComponentsInChildren<SelectableValue>().ToList();
 
         submitButton.onClick.AddListener(OnSubmitButtonClick);
+
+        GetFromIdentifier(productPerishable).OnValueChanged().AddListener(OnPerishableValueChanged);
+    }
+    
+    public override void Open(object[] optionals)
+    {
+        base.Open(optionals);
+
+        if(optionals.Length > 0)
+        {
+            if (optionals[0].GetType().Equals(typeof(UnityEvent)))
+            {
+                onClose.AddListener(delegate { ((UnityEvent)optionals[0]).Invoke(); });
+            }
+        }
+        this.perishDatePanel.SetActive((bool)GetFromIdentifier(productPerishable).GetValue());
+
     }
 
     private void OnSubmitButtonClick()
     {
-        Debug.Log("Submit");
-
         string name = (string)GetFromIdentifier(productName).GetValue();
         string description = (string)GetFromIdentifier(productDescription).GetValue();
         bool perishable = (bool)GetFromIdentifier(productPerishable).GetValue();
@@ -51,14 +67,24 @@ public class AddProductPopup : PopupView
         float cost = 0;
         float.TryParse(GetFromIdentifier(productCost).GetValue().ToString(), out cost);
 
+
+
         float amount = 0;
         float.TryParse(GetFromIdentifier(productAmountValue).GetValue().ToString(), out amount);
 
-        string type = (string)GetFromIdentifier(productAmountType).GetValue();
+        Amount.Type type = (Amount.Type)GetFromIdentifier(productAmountType).GetValue();
 
-        string perishDate = (string)GetFromIdentifier(productPerishDate).GetValue();
+        string perishDate = "";
+        if (perishable)
+        {
 
-        DataManagement.DataManager.instance.AddProduct(new DataManagement.Product()
+            perishDate = (string)GetFromIdentifier(productPerishDate).GetValue();
+
+        }
+
+        
+
+        Product product = DataManager.instance.AddItem(new Product()
         {
             name = name,
             description = description,
@@ -66,18 +92,40 @@ public class AddProductPopup : PopupView
             cost = cost            
         });
 
+        ProductAmount productAmount = DataManager.instance.AddItem(new ProductAmount()
+        {
+            amount = new Amount()
+            {
+                value = amount,
+                type = type
+            },
+            perishDate = perishDate,
+            ProductId = product.id
+        });
+
         Debug.Log(string.Format("New Product: {0}, {1}, {2}, {3}, {4}, {5}, {6}", name, description, perishable, cost, amount, type, perishDate));
+        Debug.Log(string.Format("Amount: {0}", productAmount));
+        Close();
     }
 
-    private SelectableValue GetFromIdentifier(Identifier identifier)
+    
+
+    public override void Close()
     {
-        foreach(SelectableValue selectableValue in selectables)
+        base.Close();
+        ClearInputs();
+    }
+
+    private void ClearInputs()
+    {
+        foreach(SelectableValue sv in selectables)
         {
-            if (selectableValue.identifier.Equals(identifier))
-            {
-                return selectableValue;
-            }
+            sv.Clear();
         }
-        return null;
+    }
+
+    private void OnPerishableValueChanged()
+    {
+        this.perishDatePanel.SetActive((bool)GetFromIdentifier(productPerishable).GetValue());
     }
 }

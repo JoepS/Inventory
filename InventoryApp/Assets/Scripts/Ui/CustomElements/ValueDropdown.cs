@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.UI;
 
 public class ValueDropdown : TMP_Dropdown
 {
-    internal object GetValue()
+    public object GetValue()
     {
-        return "Dropdown value to be implemented";
+        return this.value;
     }
 }
