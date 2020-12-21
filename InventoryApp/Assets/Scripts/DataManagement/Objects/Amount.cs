@@ -14,6 +14,12 @@
 			}
 		}
 
+		//public Amount(Amount other) : base(other)
+		//{
+		//	this.value = other.value;
+		//	this.type = other.type;
+		//}
+
 		public enum Type
 		{
 			Grams,
@@ -26,6 +32,7 @@
 		{
 			return string.Format("Amount: {0} {1}", value, type);
 		}
+
 	}
 
 	

@@ -36,6 +36,7 @@ namespace DataManagement
 
             CreateProductList();
             CreateAmountList();
+            CreateRecipesList();
            
             Ready = true;
         }
@@ -58,6 +59,16 @@ namespace DataManagement
             loadedObjects.Add(productAmountList);
             productAmountListId = loadedObjects.IndexOf(productAmountList);
             Debug.Log(productAmountList);
+        }
+
+        private void CreateRecipesList()
+        {
+            RecipesList recipesList = serializer.LoadData<RecipesList>(RecipesList.location);
+            if (recipesList == null)
+                recipesList = new RecipesList();
+            loadedObjects.Add(recipesList);
+            productAmountListId = loadedObjects.IndexOf(recipesList);
+            Debug.Log(recipesList);
         }
 
 

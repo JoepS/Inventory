@@ -58,7 +58,6 @@ public class OptionsMenu : MonoBehaviour, IPointerClickHandler
 
     public void SetState(OptionsState state)
     {
-        Debug.Log("Set state " + state);
         currentState = state;
         onStateChanged.Invoke(state);
     }

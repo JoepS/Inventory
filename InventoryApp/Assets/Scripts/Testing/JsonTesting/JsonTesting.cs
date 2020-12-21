@@ -53,6 +53,11 @@ namespace Testing
                 return location;
             }
         }
+
+        //public TestObject(TestObject other) : base(other)
+        //{
+        //    this.test = other.test;
+        //}
     }
 
 }

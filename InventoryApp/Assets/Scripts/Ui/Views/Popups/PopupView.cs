@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DataManagement;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -125,5 +126,10 @@ public class PopupView : MonoBehaviour
         {
             sv.Clear();
         }
+    }
+
+    public virtual void Remove<T>(T objectToRemove) where T : JsonObject
+    {
+        
     }
 }

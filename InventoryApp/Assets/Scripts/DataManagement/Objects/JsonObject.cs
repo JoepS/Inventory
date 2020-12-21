@@ -11,10 +11,11 @@ namespace DataManagement
 		{
 			get;
 		}
+
 		public virtual string ToJson()
 		{
 			return JsonUtility.ToJson(this);
 		}
-	}
 
+	}
 }

@@ -13,6 +13,7 @@ namespace DataManagement
 
 		new public static string location = "/ProductAmounts/ProductAmount";
 
+
 		public override string PreferredLocation
 		{
 			get
@@ -25,5 +26,15 @@ namespace DataManagement
 		{
 			return string.Format("{0} | {1} | {2}", ProductId, amount, perishDate);
 		}
+
+		//public override JsonObject Copy()
+		//{
+		//	return new ProductAmount()
+		//	{
+		//		ProductId = this.ProductId,
+		//		amount = this.amount,
+		//		perishDate = this.perishDate
+		//	};
+		//}
 	}
 }
