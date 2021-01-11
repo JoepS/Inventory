@@ -51,7 +51,6 @@ public class EditRecipePopup : PopupView
         base.Awake();
         addIngredientButton.onClick.AddListener(OnAddIngredientClick);
         saveButton.onClick.AddListener(OnSaveButtonClick);
-        Debug.Log(typeof(string).Assembly.ImageRuntimeVersion);
     }
 
     public override void Open(object[] optionals)

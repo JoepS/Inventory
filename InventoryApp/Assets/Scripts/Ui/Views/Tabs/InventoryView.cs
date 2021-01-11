@@ -24,7 +24,7 @@ public class InventoryView : TabView
         if (DataManager.instance.Ready)
         {
             products = DataManager.instance.GetList<Product>().list;
-            amounts = DataManager.instance.GetList<ProductAmount>().list;
+            amounts = DataManager.instance.GetJsonObject<ProductAmountList>().list;
             UpdateProductAmountList();
         }
         base.Open();

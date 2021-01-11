@@ -13,9 +13,7 @@ namespace DataManagement
         private JsonSerializer serializer;
 
         private List<JsonObject> loadedObjects;
-
-        private int productListId = -1;
-        private int productAmountListId = -1;
+        
         public bool Ready
         {
             get;
@@ -37,6 +35,7 @@ namespace DataManagement
             CreateProductList();
             CreateAmountList();
             CreateRecipesList();
+            CreateShoppingList();
            
             Ready = true;
         }
@@ -47,7 +46,6 @@ namespace DataManagement
             if (productList == null)
                 productList = new ProductList();
             loadedObjects.Add(productList);
-            productListId = loadedObjects.IndexOf(productList);
             Debug.Log(productList);
         }
 
@@ -57,7 +55,6 @@ namespace DataManagement
             if (productAmountList == null)
                 productAmountList = new ProductAmountList();
             loadedObjects.Add(productAmountList);
-            productAmountListId = loadedObjects.IndexOf(productAmountList);
             Debug.Log(productAmountList);
         }
 
@@ -67,8 +64,16 @@ namespace DataManagement
             if (recipesList == null)
                 recipesList = new RecipesList();
             loadedObjects.Add(recipesList);
-            productAmountListId = loadedObjects.IndexOf(recipesList);
             Debug.Log(recipesList);
+        }
+
+        private void CreateShoppingList()
+        {
+            ShoppingList shoppingList = serializer.LoadData<ShoppingList>(ShoppingList.location);
+            if (shoppingList == null)
+                shoppingList = new ShoppingList();
+            loadedObjects.Add(shoppingList);
+            Debug.Log(shoppingList);
         }
 
 
@@ -104,10 +109,26 @@ namespace DataManagement
             SaveAll();
         }
 
+        public T GetJsonObject<T>() where T : JsonObject
+        {
+            int count = loadedObjects.Where(x => x.GetType().Equals(typeof(T))).Count();
+            if(count > 1)
+            {
+                Debug.LogError("Multiple jsonobjects found with this identifier: " + typeof(T));
+            }
+            T jsonObject = (T)loadedObjects.Where(x => x.GetType().Equals(typeof(T))).FirstOrDefault();
+            return jsonObject;
+        }
+
         
         public JsonObjectList<T> GetList<T>() where T : JsonObject
         {
-            JsonObjectList<T> jsonObjectList = (JsonObjectList<T>)loadedObjects.Where(x => typeof(JsonObjectList<T>).IsAssignableFrom(x.GetType())).First();
+            int count = loadedObjects.Where(x => typeof(JsonObjectList<T>).IsAssignableFrom(x.GetType())).Count();
+            if (count > 1)
+            {
+                Debug.LogError("Multiple JsonObjects found with this identifier: " + typeof(T));
+            }
+            JsonObjectList<T> jsonObjectList = (JsonObjectList<T>)loadedObjects.Where(x => typeof(JsonObjectList<T>).IsAssignableFrom(x.GetType())).FirstOrDefault();
             return jsonObjectList;
         }
 

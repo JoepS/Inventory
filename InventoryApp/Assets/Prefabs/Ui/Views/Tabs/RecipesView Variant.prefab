@@ -159,29 +159,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7100962411018226651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2821749007868960967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1102a0827bd5c9b4a9f50db4e168fff4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 2821749007868961017}
-  optionsButton: {fileID: 2821749006901386941}
-  removeButton: {fileID: 2821749007886799032}
-  optionsMenu: {fileID: 5391172144282719001}
-  addIdentifier: {fileID: 11400000, guid: bd0f87da0e0a77e42ae96f2e6ec89213, type: 2}
-  confirmationIdentifier: {fileID: 11400000, guid: 78e3f8cd3ca1e434a8fdcb1b8c4d7c6f,
-    type: 2}
-  editIdentifier: {fileID: 11400000, guid: b66dd7a0103d66b45a894640db390103, type: 2}
-  recipesContent: {fileID: 7907446692569387094}
-  recipeViewPrefab: {fileID: 779728275691863533, guid: eadd9af3a9530824fbac2a0a2d680ae4,
-    type: 3}
 --- !u!1 &4412190665753308775
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,6 +662,29 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7100962411018226651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2821749007868960967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1102a0827bd5c9b4a9f50db4e168fff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 2821749007868961017}
+  optionsButton: {fileID: 2821749006901386941}
+  removeButton: {fileID: 2821749007886799032}
+  optionsMenu: {fileID: 5391172144282719001}
+  addIdentifier: {fileID: 11400000, guid: bd0f87da0e0a77e42ae96f2e6ec89213, type: 2}
+  confirmationIdentifier: {fileID: 11400000, guid: 78e3f8cd3ca1e434a8fdcb1b8c4d7c6f,
+    type: 2}
+  editIdentifier: {fileID: 11400000, guid: b66dd7a0103d66b45a894640db390103, type: 2}
+  recipesContent: {fileID: 7907446692569387094}
+  recipeViewPrefab: {fileID: 779728275691863533, guid: eadd9af3a9530824fbac2a0a2d680ae4,
+    type: 3}
 --- !u!1 &8603019241399218041
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,11 +874,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5553819730687734030, guid: 7db9e11fd840e3148847601dddbdcb37,
-        type: 3}
-      propertyPath: m_Alpha
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2371909207618634473, guid: 7db9e11fd840e3148847601dddbdcb37,
         type: 3}
