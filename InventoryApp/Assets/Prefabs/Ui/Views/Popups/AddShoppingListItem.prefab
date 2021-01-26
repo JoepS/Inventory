@@ -809,7 +809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 833931822157053385}
-  identifier: {fileID: 0}
+  identifier: {fileID: 11400000, guid: ec25eda4a177e4a41ac3c8a431c56143, type: 2}
   closeButton: {fileID: 833931821609966171}
   formContent: {fileID: 833931821065735804}
 --- !u!1 &833931822313263528
