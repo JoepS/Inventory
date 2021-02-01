@@ -1,27 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DataManagement;
+using DataManagement.Models;
+using System.Linq;
 
-
-public class SQLiteTesting : MonoBehaviour
+namespace Testing
 {
-    DatabaseController controller;
 
-    // Start is called before the first frame update
-    void Start()
+    public class SQLiteTesting : MonoBehaviour
     {
-        controller = new DatabaseController("database.db");
+        // Start is called before the first frame update
+        void Start()
+        {
+            DatabaseController.Connect("database.db");
+
+            Debug.Log(Product.Where(1));
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+
+        private void OnApplicationQuit()
+        {
+            DatabaseController.Disconnect();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-	private void OnApplicationQuit()
-	{
-        controller.connection.Close();
-
-    }
 }

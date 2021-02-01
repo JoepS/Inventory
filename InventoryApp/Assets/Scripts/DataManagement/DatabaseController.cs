@@ -1,25 +1,27 @@
 ﻿using SQLite4Unity3d;
 using System.IO;
 using UnityEngine;
+using DataManagement.Models;
 
-public class DatabaseController
+namespace DataManagement
 {
-
-    public SQLiteConnection connection
+    public class DatabaseController
     {
-        get
+        public static SQLiteConnection connection
         {
-            return _connection;
+            get
+            {
+                return _connection;
+            }
         }
-    }
 
-    private SQLiteConnection _connection;
+        private static SQLiteConnection _connection;
 
-    public DatabaseController(string DatabaseName)
-    {
+        public static void Connect(string DatabaseName)
+        {
 
 #if UNITY_EDITOR
-        var dbPath = string.Format(@"Assets/StreamingAssets/{0}", DatabaseName);
+            var dbPath = string.Format(@"Assets/StreamingAssets/{0}", DatabaseName);
 #else
         // check if file exists in Application.persistentDataPath
         var filepath = string.Format("{0}/{1}", Application.persistentDataPath, DatabaseName);
@@ -60,8 +62,56 @@ public class DatabaseController
 
         var dbPath = filepath;
 #endif
-        _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
-        Debug.Log("Final PATH: " + dbPath);
+            _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
+            try
+            {
+                AmountType type = _connection.Table<AmountType>().Where(x => x.id == 1).First();
+            }
+            catch (SQLiteException ex)
+			{
+                Debug.LogWarning("New database needs creation " + ex);
+                CreateDatabaseTables();
+                PopulateDefaultValues();
+			}
 
+
+            Debug.Log("Final PATH: " + dbPath);
+
+        }
+
+        private static void CreateDatabaseTables()
+		{
+            _connection.CreateTable<Product>();
+            _connection.CreateTable<ProductAmount>();
+            _connection.CreateTable<AmountType>();
+
+            Debug.Log("Done creating database tables");
+		}
+
+        private static void PopulateDefaultValues()
+		{
+            _connection.InsertAll(new[]{
+                new AmountType()
+                {
+                    name= "Unit"
+                },
+                new AmountType()
+                {
+                    name = "Grams"
+                },
+                new AmountType()
+                {
+                    name = "Kilograms"
+                }
+            });
+
+            Debug.Log("Done populating default values");
+        }
+
+        public static void Disconnect()
+		{
+            _connection.Close();
+		}
     }
+
 }
