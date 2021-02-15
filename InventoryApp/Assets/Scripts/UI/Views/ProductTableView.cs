@@ -24,23 +24,36 @@ namespace UI.Views
         [SerializeField]
         private Scriptables.Form addForm = null;
 
-		private void Awake()
-		{
+        private void Awake()
+        {
             addButton.onClick.AddListener(OnAddButtonClick);
-		}
+        }
 
-		void Start()
+        void Start()
         {
             tableScrollView.ViewTable(DataManagement.DatabaseController.connection.Table<Product>().ToList());
         }
 
         private void OnAddButtonClick()
+        {
+            InfoEvent completeEvent = new InfoEvent();
+            completeEvent.AddListener(NewProduct);
+            PopupManager.OpenPopup(modelFormPopup, addForm, completeEvent);
+        }
+
+        private void NewProduct(List<Forms.LabelItem> info)
 		{
-            UnityEvent completeEvent = new UnityEvent();
-            completeEvent.AddListener(delegate { Debug.Log("On Complete Form"); });
-            PopupManager.OpenPopup(modelFormPopup, addForm,  completeEvent);
+            foreach(Forms.LabelItem o in info)
+			{
+                Debug.Log(o.label + ": " + o.item);
+			}
 		}
 
+
+    }
+
+    public class InfoEvent : UnityEvent<List<Forms.LabelItem>>
+    {
 
     }
 

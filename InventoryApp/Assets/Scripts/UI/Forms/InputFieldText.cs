@@ -9,7 +9,7 @@ namespace UI.Forms
 	public class InputFieldText : FormItemString
 	{
 		[SerializeField]
-		private TMP_Text label = null;
+		private TMP_Text labelText = null;
 
 		[SerializeField]
 		private TMP_InputField inputField = null;
@@ -21,12 +21,13 @@ namespace UI.Forms
 
 		public override void ResetValue()
 		{
-			inputField.text = this.defaultValue;
+			inputField.placeholder.GetComponent<TMP_Text>().text = this.defaultValue;
 		}
 
 		public override void Setup(string label, string defaultValue)
 		{
-			this.label.text = label;
+			this.labelText.text = label;
+			this.label = label;
 			this.defaultValue = defaultValue;
 			ResetValue();
 		}

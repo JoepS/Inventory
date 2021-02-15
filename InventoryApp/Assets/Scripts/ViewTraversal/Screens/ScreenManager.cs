@@ -22,7 +22,7 @@ namespace ViewTraversal.Screens
 			{
 				Screen screen = screens.Where(x => x.Identifier.Equals(identifier)).First();
 				screen.Open(parameters);
-				if (current != null)
+				if (current != null && current != screen)
 					current.Close();
 				current = screen;
 			}

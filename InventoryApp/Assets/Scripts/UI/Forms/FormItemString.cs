@@ -10,4 +10,14 @@ namespace UI.Forms
       
     }
 
+    public abstract class FormItemFloat : FormItemView<float>
+	{
+
+	}
+
+    public abstract class FormItemBool : FormItemView<bool>
+	{
+
+	}
+
 }

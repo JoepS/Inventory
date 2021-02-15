@@ -18,3 +18,7 @@ MonoBehaviour:
     type: 0
   - label: Description
     type: 0
+  - label: Price
+    type: 1
+  - label: Perishable
+    type: 3
